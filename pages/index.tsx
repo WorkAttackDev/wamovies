@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
 import Header from "../features/core/components/Header";
+import MetaTags from "../features/core/components/MetaTags";
 import Modal from "../features/core/components/Modal";
 import Nav from "../features/core/components/Nav";
 import Pagination from "../features/core/components/Pagination";
@@ -19,10 +20,7 @@ const HomePage: React.FC<Props> = ({ result }) => {
 
   return (
     <div>
-      <Head>
-        <title>WorkAttack Movies</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+      <MetaTags />
 
       <Header />
       <Nav />

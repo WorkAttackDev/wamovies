@@ -1,7 +1,8 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../features/core/components/Header";
+import Modal from "../features/core/components/Modal";
 import Nav from "../features/core/components/Nav";
 import Pagination from "../features/core/components/Pagination";
 import Results from "../features/core/components/Results";
@@ -14,6 +15,8 @@ type Props = {
 };
 
 const HomePage: React.FC<Props> = ({ result }) => {
+  const [showModal, setShowModal] = useState(true);
+
   return (
     <div>
       <Head>
@@ -29,6 +32,37 @@ const HomePage: React.FC<Props> = ({ result }) => {
         <Results results={result.results} />
       )}
       <Pagination page={result.page} maxPages={result.total_pages} />
+      {showModal && (
+        <Modal>
+          <div className='flex flex-col items-center text-center p-4 overflow-y-auto'>
+            <img
+              className='w-32 sm:w-60'
+              src='/images/logo.svg'
+              alt='WorkAttack Logo svg'
+            />
+            <p>Este site é uma demo de um catalogo de filmes online.</p>
+            <p>
+              O proposito deste site é simplesmente demonstrativo, ao utilizar
+              poderá notar algumas funcionalidades em falta.
+            </p>
+            <p>
+              Se Gostou do site entre em contacto em:{" "}
+              <a
+                className='text-workattack'
+                href='https://workattackangola.com'
+              >
+                workattackangola.com
+              </a>{" "}
+            </p>
+            <button
+              className='bg-workattack shadow-sm flex items-center justify-center px-4 py-1 my-8 rounded-full transition duration-300 hover:bg-workattack-dark hover:shadow-xl'
+              onClick={() => setShowModal(false)}
+            >
+              Fechar
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

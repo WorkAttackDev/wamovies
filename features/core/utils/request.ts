@@ -14,13 +14,13 @@ export const requests = {
         page || 1
       }`,
   },
-  fetchPopular: {
-    title: "Popular",
-    url: ({ page = 1 }: QueryArgs) =>
-      `/trending/movie/popular?api_key=${TMDB_API_KEY}&language=pt-BR&page=${
-        page || 1
-      }`,
-  },
+  // fetchPopular: {
+  //   title: "Popular",
+  //   url: ({ page = 1 }: QueryArgs) =>
+  //     `/trending/movie/popular?api_key=${TMDB_API_KEY}&language=pt-BR&page=${
+  //       page || 1
+  //     }`,
+  // },
   fetchRated: {
     title: "Melhor Avaliados",
     url: ({ page = 1 }: QueryArgs) =>

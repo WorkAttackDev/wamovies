@@ -1,7 +1,11 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./features/core/components/**/*.{js,ts,jsx,tsx}"],
+  mode: 'jit',
+  purge: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./features/core/components/**/*.{js,ts,jsx,tsx}",
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
@@ -29,5 +33,8 @@ module.exports = {
       fontWeight: ["hover", "focus", "group-hover"],
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [
+    require("tailwind-scrollbar-hide"),
+    require("@tailwindcss/line-clamp"),
+  ],
 };

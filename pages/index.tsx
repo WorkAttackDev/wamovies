@@ -19,10 +19,8 @@ const HomePage: React.FC<Props> = ({ result }) => {
   const [showModal, setShowModal] = useState(true);
 
   return (
-    <div>
+    <main>
       <MetaTags />
-
-      <Header />
       <Nav />
       {Object.keys(result).length === 0 ? (
         <WithoutResults />
@@ -61,7 +59,7 @@ const HomePage: React.FC<Props> = ({ result }) => {
           </div>
         </Modal>
       )}
-    </div>
+    </main>
   );
 };
 

@@ -2,27 +2,35 @@ import React, { forwardRef } from "react";
 import { ResultItem } from "../../models/Result";
 import Image from "next/image";
 import { ThumbUpIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import { BASE_IMAGE_PATH } from "../../utils/request";
+// import ColorThief from "colorthief";
 
 type Props = {
   result: ResultItem;
 };
 
 const Thumbnail = forwardRef<HTMLDivElement, Props>(({ result }, ref) => {
-  const BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/original";
-
   return (
     <div
       ref={ref}
       className='group cursor-pointer transition ease-out transform duration-300 hover:z-40 sm:hover:scale-105 sm:p-4'
     >
-      <Image
-        layout='responsive'
-        width={640}
-        height={360}
-        src={`${BASE_IMAGE_PATH}${result.backdrop_path || result.poster_path}`}
-      />
+      <Link href={`/movies/${result.id}`}>
+        <a>
+          <Image
+            layout='intrinsic'
+            width={920}
+            height={540}
+            // onLoad={(e) => console.log(new ColorThief().getColor(e.currentTarget))}
+            src={`${BASE_IMAGE_PATH}${
+              result.backdrop_path || result.poster_path
+            }`}
+          />
+        </a>
+      </Link>
       <div>
-        <p title={result.overview} className='truncate'>
+        <p title={result.overview} className='line-clamp-2'>
           {result.overview}
         </p>
         <h1 className='text-xl font-bold transition-all ease-out duration-200 group-hover:text-white'>

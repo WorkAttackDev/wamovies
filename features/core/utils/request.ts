@@ -1,15 +1,22 @@
+import { TMDBFailure } from "../models/Errors";
+import { Movie } from "../models/Movie";
 import { Result } from "../models/Result";
 
 export const TMDB_API_KEY = process.env.TMDB_API_KEY;
+export const BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 
 type QueryArgs = {
   page: number;
 };
 
-export const requests = {
+type QueryFunc = (args: QueryArgs) => string;
+
+type Request = Record<string, { title: string; url: QueryFunc }>;
+
+export const requests: Request = {
   fetchTrending: {
     title: "Tendência",
-    url: ({ page = 1 }: QueryArgs) =>
+    url: ({ page = 1 }) =>
       `/trending/movie/week?api_key=${TMDB_API_KEY}&language=pt-BR&page=${
         page || 1
       }`,
@@ -94,5 +101,16 @@ export const fetchMovies = async (
   ).json();
 
   if (data.success === false) return {};
+  return data;
+};
+
+export const fetchMovie = async (id: string): Promise<Movie | {}> => {
+  const data: Movie | TMDBFailure = await (
+    await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}&language=pt-BR`
+    )
+  ).json();
+
+  if ((data as TMDBFailure).success === false) return {};
   return data;
 };

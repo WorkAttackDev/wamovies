@@ -12,7 +12,6 @@ type Props = {
 };
 
 const MoviePage: React.FC<Props> = ({ movie }) => {
-  console.log(movie);
 
   return (
     <main>

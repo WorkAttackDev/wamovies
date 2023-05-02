@@ -19,13 +19,12 @@ const Thumbnail = forwardRef<HTMLDivElement, Props>(({ result }, ref) => {
       <Link href={`/movies/${result.id}`}>
         <a>
           <Image
-            layout='intrinsic'
             width={920}
             height={540}
             // onLoad={(e) => console.log(new ColorThief().getColor(e.currentTarget))}
-            src={`${BASE_IMAGE_PATH}${
-              result.backdrop_path || result.poster_path
-            }`}
+            src={`${BASE_IMAGE_PATH}${result.backdrop_path || result.poster_path
+              }`}
+            alt="movie image"
           />
         </a>
       </Link>

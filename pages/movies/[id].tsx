@@ -21,12 +21,11 @@ const MoviePage: React.FC<Props> = ({ movie }) => {
         <section className='grid grid-cols-1'>
           <div className='relative'>
             <Image
-              layout='responsive'
               width={1920}
               height={1080}
-              src={`${BASE_IMAGE_PATH}${
-                movie.backdrop_path || movie.poster_path
-              }`}
+              src={`${BASE_IMAGE_PATH}${movie.backdrop_path || movie.poster_path
+                }`}
+              alt="movie image"
             />
             <span className='absolute -bottom-4 w-full h-full px-4 flex flex-col items-center justify-end  bg-gradient-to-t from-workattack-dark sm:p-8'>
               <small>{movieStatusPt[movie.status]}</small>

@@ -1,6 +1,7 @@
 import { Router } from "next/router";
 import NProgress from "nprogress";
 import Header from "../features/core/components/Header";
+import { Analytics } from '@vercel/analytics/react';
 
 import "../styles/globals.css";
 import "../styles/nprogress.css";
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Header />
       <Component {...pageProps} />
+      <Analytics />
     </>
   );
 }
